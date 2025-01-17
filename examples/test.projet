@@ -1,0 +1,19 @@
+#déclaration des variables
+Var
+i:byte
+tab :Array[10]
+size :byte
+sum :byte
+#partie instruction
+Instruction
+0: mov size,10
+1: mov i,0
+2: mov sum,0
+# remplissage du tableau
+3: sub size,i
+4:jz 9
+5: input(tab[i])
+6: add i,1
+7: add sum, tab[i]
+8:jmp 3
+9:print(sum) 

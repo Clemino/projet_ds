@@ -1,0 +1,53 @@
+<programme> ::= <declarations> <instructions>
+
+<declarations> ::= "Var" <liste_declaration>
+<liste_declaration> ::= <declaration> "," <liste_declaration> | <declaration>
+<declaration> ::= <nom_variable> ":" <type_variable>
+<type_variable> ::= "byte" | "Array" "[" <entier> "]"
+
+<instructions> ::= "Instructions" <liste_instruction>
+<liste_instruction> ::= <instruction> <liste_instruction> | <instruction>
+<instruction> ::= <numero_instruction> ":" <operation> ";" | "#" <texte>
+<numero_instruction> ::= <entier>
+<operation> ::= "mov" <operande> "," <operande>
+              | "add" <operande> "," <operande>
+              | "sub" <operande> "," <operande>
+              | "mult" <operande> "," <operande>
+              | "div" <operande> "," <operande>
+              | "and" <operande> "," <operande>
+              | "or" <operande> "," <operande>
+              | "not" <operande>
+              | "jmp" <entier>
+              | "jz" <entier>
+              | "js" <entier>
+              | "jo" <entier>
+              | "input" <operande>
+              | "print" <operande>
+              | "halt"
+              | "push" <operande>
+              | "pop" <operande>
+              | "isFull"
+              | "call" <nom_variable>
+              | "#" <texte>
+
+<operande> ::= <constante> | <nom_variable> | <nom_variable> "[" <expression> "]" | <registre>
+<expression> ::= <entier> 
+               | <nom_variable> 
+               | <nom_variable> <operateur_arithmetique> <entier>
+               | <entier> <operateur_arithmetique> <nom_variable>
+<operateur_arithmetique> ::= "+" | "-" | "*" | "/"
+
+<nom_variable> ::= <lettre> <suite_identifiant>
+<suite_identifiant> ::= <lettre> | <chiffre> | <suite_identifiant>
+<lettre> ::= "a" | "b" | ... | "z" | "A" | "B" | ... | "Z"
+<chiffre> ::= "0" | "1" | ... | "9"
+
+<constante> ::= <entier_signe>
+<entier_signe> ::= <signe> <entier_positif> | <entier_positif>
+<signe> ::= "+" | "-"
+<entier_positif> ::= <chiffre_non_zero> <suite_chiffre> | <chiffre>
+<chiffre_non_zero> ::= "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<chiffre> ::= "0" | <chiffre_non_zero>
+<suite_chiffre> ::= <chiffre> <suite_chiffre> | <chiffre>
+
+<registre> ::= "AX" | "BX" | "CX" | "DX"
